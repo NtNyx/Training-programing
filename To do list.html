@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 5px 0; }
+        .delete { color: red; cursor: pointer; }
+    </style>
+    <script>
+        function addItem() {
+            const taskInput = document.getElementById("task");
+            const task = taskInput.value.trim();
+
+            if (task !== "") {
+                const list = document.getElementById("todo-list");
+                const listItem = document.createElement("li");
+
+                
+                listItem.textContent = task;
+
+               
+                const deleteButton = document.createElement("span");
+                deleteButton.textContent = " [Delete]";
+                deleteButton.className = "delete";
+                deleteButton.onclick = function () {
+                    list.removeChild(listItem);
+                };
+
+                listItem.appendChild(deleteButton);
+                list.appendChild(listItem);
+                taskInput.value = ""; // ล้างช่องกรอก
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>My To-Do List</h1>
+    <input type="text" id="task" placeholder="Enter a task">
+    <button onclick="addItem()">Add</button>
+    <ul id="todo-list"></ul>
+</body>
+</html>
